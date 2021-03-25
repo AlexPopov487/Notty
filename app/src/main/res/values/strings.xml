@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_et">Title…</string>
+    <string name="note_field_et">Start typing your note here…</string>
+    <string name="notUrgent_toggleButton">Not urgent</string>
+    <string name="urgent_toggleButton">Urgent</string>
+    <string name="veryUrgent_toggleButton">Very urgent</string>
+    <string name="create_empty_note_error">An empty note was deleted</string>
+    <string name="deleteNote_menuAction">Delete</string>
+</resources>
