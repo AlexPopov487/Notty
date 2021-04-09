@@ -5,14 +5,30 @@
     android:id="@+id/createNote_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
     tools:context=".ui.CreateEditNoteFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/noteTitle_Et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/menu_create_edit_note" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <EditText
         android:id="@+id/noteTitle_Et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@null"
+        android:layout_margin="16dp"
         android:gravity="start|top"
         android:hint="@string/title_et"
         android:importantForAutofill="no"
@@ -21,14 +37,14 @@
         app:layout_constraintBottom_toTopOf="@id/noteContent_Et"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
         tools:text="Run errands!" />
 
     <EditText
         android:id="@+id/noteContent_Et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_margin="16dp"
         android:background="@null"
         android:gravity="start|top"
         android:hint="@string/note_field_et"
@@ -43,7 +59,7 @@
         android:id="@+id/toggleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +99,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_done_outline_24"
         app:elevation="0dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

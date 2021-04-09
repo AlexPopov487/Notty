@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -31,6 +32,17 @@ class NotesListFragment : Fragment() {
     ): View {
         val binding = FragmentNotesListBinding.inflate(inflater, container, false)
 
+        
+        binding.toolbar.inflateMenu(R.menu.menu_notes_list)
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_delete_all -> {
+                    Toast.makeText(context, "Lol", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
+        }
 
         val adapter = NoteAdapter(object : InteractionListeners {
             override fun onNoteClicked(note: Note) {
@@ -78,4 +90,25 @@ class NotesListFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(binding.notesListRv)
         return binding.root
     }
+
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        // it's important to explicitly tell our fragment that we are going to display a menu
+//        setHasOptionsMenu(true)
+//        super.onCreate(savedInstanceState)
+//
+//    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.menu_notes_list, menu)
+//        super.onCreateOptionsMenu(menu, inflater)
+//    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            R.id.action_delete_all -> {
+//                Toast.makeText(context, "Lol", Toast.LENGTH_SHORT).show()
+//                true
+//            }
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
 }

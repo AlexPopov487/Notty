@@ -12,6 +12,7 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
+            android:id="@+id/toolbar"
             android:layout_height="?android:attr/actionBarSize"
             app:layout_scrollFlags="scroll|snap|enterAlways"
             app:title="@string/app_name">

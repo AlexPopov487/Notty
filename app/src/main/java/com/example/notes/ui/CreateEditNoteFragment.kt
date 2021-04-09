@@ -1,11 +1,10 @@
 package com.example.notes.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,7 +13,6 @@ import com.example.hellow.utils.hideKeyboard
 import com.example.notes.R
 import com.example.notes.databinding.FragmentCreateEditNoteBinding
 import com.example.notes.viewModel.NoteViewModel
-import kotlinx.android.synthetic.main.fragment_create_edit_note.*
 
 
 class CreateEditNoteFragment : Fragment() {
@@ -38,11 +36,25 @@ class CreateEditNoteFragment : Fragment() {
 
         // if note id = -1L, we are creating a new note
         if (noteIdArgs != -1L) {
+            binding.toolbar.title = getString(R.string.editNote_toolbaTitle)
             val noteToEdit = viewModel.getNoteById(noteIdArgs)
             viewModel.onNoteEdit(noteToEdit)
+
+            val deleteMenuItem = binding.toolbar.menu[0]
+            deleteMenuItem.setOnMenuItemClickListener {
+                viewModel.removeNote(noteToEdit)
+                findNavController().navigateUp()
+                true
+            }
+
+
             if (noteToEdit.title.isNotBlank()) binding.noteTitleEt.setText(noteToEdit.title)
             if (noteToEdit.content.isNotBlank()) binding.noteContentEt.setText(noteToEdit.content)
             noteUrgencyIndex = noteToEdit.urgencyLevel
+        } else {
+            // change toolbar title if we are creating a new note
+            binding.toolbar.menu[0].isVisible = false
+            binding.toolbar.title = getString(R.string.createNote_toolbarTitle)
         }
 
         viewModel.editedNote.observe(viewLifecycleOwner,{

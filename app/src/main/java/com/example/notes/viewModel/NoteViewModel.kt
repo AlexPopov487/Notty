@@ -5,11 +5,13 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.notes.Note
 import com.example.notes.R
 import com.example.notes.db.AppDb
 import com.example.notes.repository.NoteRepositoryInMemory
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 import kotlin.coroutines.coroutineContext
 
 class NoteViewModel(application: Application) : AndroidViewModel(application) {
@@ -21,13 +23,13 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _isEmptyNoteAdded = MutableLiveData<Boolean>(false)
     val isEmptyNoteAdded: LiveData<Boolean>
-    get() = _isEmptyNoteAdded
+        get() = _isEmptyNoteAdded
     fun resetEmptyNoteAdded() {
         _isEmptyNoteAdded.value = false
     }
 
-    val noteData: LiveData<List<Note>>
-        get() = repository.getAllNotes()
+    //TODO make this a coroutine function
+    val noteData = repository.getAllNotes()
 
     fun saveNote() {
         editedNote.value?.let {
@@ -35,17 +37,29 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
                 _isEmptyNoteAdded.value = true
                 return@let
             }
-            repository.onSave(it)
+            saveNoteToDb(it)
         }
         _editedNote.value = Note()
     }
 
-    fun getNoteById(noteId: Long): Note {
-        return repository.getNoteById(noteId)
+    private fun saveNoteToDb(note : Note) {
+        viewModelScope.launch{
+            // perform a potentially long-running db operation in coroutines
+            repository.onSave(note)
+        }
     }
 
+    fun getNoteById(noteId: Long): Note {
+        //TODO make this a coroutine function
+             return repository.getNoteById(noteId)
+    }
+
+
+
     fun removeNote(note: Note) {
-        repository.removeNote(note)
+        viewModelScope.launch{
+            repository.removeNote(note)
+        }
     }
 
     fun onNoteEdit(note: Note) {

@@ -9,4 +9,7 @@
     <string name="veryUrgent_toggleButton">Very urgent</string>
     <string name="create_empty_note_error">An empty note was deleted</string>
     <string name="deleteNote_menuAction">Delete</string>
+    <string name="createNote_toolbarTitle">Create note</string>
+    <string name="editNote_toolbaTitle">Edit note</string>
+    <string name="delete_all_menu_action">Delete all</string>
 </resources>
