@@ -19,8 +19,6 @@
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-
-
         <androidx.recyclerview.widget.RecyclerView
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/notesList_rv"
@@ -44,11 +42,59 @@
         android:backgroundTint="@android:color/white"
         app:fabAlignmentMode="end" />
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_empty_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_empty_state_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/balsamiq_sans"
+            android:text="@string/tv_empty_state_1"
+            android:textAlignment="center"
+            android:textSize="28sp"
+            android:textStyle="italic|bold"
+            app:layout_constraintBottom_toTopOf="@id/ic_empty_state"
+            app:layout_constraintEnd_toEndOf="@id/ic_empty_state"
+            app:layout_constraintStart_toStartOf="@+id/ic_empty_state" />
+
+        <TextView
+            android:id="@+id/tv_empty_state_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/balsamiq_sans"
+            android:text="@string/tv_empty_state_2"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@id/ic_empty_state"
+            app:layout_constraintStart_toStartOf="@id/ic_empty_state"
+            app:layout_constraintTop_toBottomOf="@id/ic_empty_state" />
+
+        <ImageView
+            android:id="@+id/ic_empty_state"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:contentDescription="@string/ic_empty_state_description"
+            android:src="@drawable/ic_empty_state"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bottom_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorAccent"
         android:src="@drawable/ic_add_circle_outline_24"
+        android:contentDescription="@string/ok_fab_description"
         app:layout_anchor="@id/bottom_app_bar" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
