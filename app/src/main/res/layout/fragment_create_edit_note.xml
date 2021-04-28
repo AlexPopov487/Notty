@@ -69,15 +69,15 @@
 
         <Button
             android:id="@+id/notUrgent_button"
-            style="@style/AppTheme.urgencyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/notUrgentButton"
             android:backgroundTint="@color/notUrgent"
             android:text="@string/notUrgent_toggleButton" />
 
         <Button
             android:id="@+id/urgent_button"
-            style="?attr/materialButtonOutlinedStyle"
+            style="@style/urgentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/urgent"
@@ -85,7 +85,7 @@
 
         <Button
             android:id="@+id/very_Urgent_button"
-            style="?attr/materialButtonOutlinedStyle"
+            style="@style/veryUrgentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/veryUrgent"
@@ -99,7 +99,9 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_done_outline_24"
         app:elevation="0dp"
-        android:layout_margin="16dp"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
