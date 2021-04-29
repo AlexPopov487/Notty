@@ -22,4 +22,9 @@
         <item name="strokeColor">@color/very_urgent_bt_stroke_color</item>
     </style>
 
+
+    <style name="AlertDialogCustom" parent="@android:style/Theme.Material.Dialog">
+        <item name="android:textColor">@color/material_on_surface_emphasis_medium</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

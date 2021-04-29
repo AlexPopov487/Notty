@@ -12,16 +12,15 @@ class NoteRepositoryInMemory(private val noteDao: NoteDao) : Repository {
 
     override fun getNoteById(noteId: Long): Note =  noteDao.getNoteById(noteId)
 
+    override suspend fun removeAll() {
+        noteDao.removeAll()
+    }
 
-//    override fun getUrgencyLevel(noteId: Long): LiveData<Int> {
-//        val currentNote = noteDao.getNoteById(noteId)
-//        return MutableLiveData(currentNote.urgencyLevel)
-//    }
+    override fun getByUrgency(urgency: Int): LiveData<List<Note>> = noteDao.getByUrgency(urgency)
+
+//    override fun getVeryUrgent(): LiveData<List<Note>> = noteDao.getVeryUrgent()
 //
-//    override fun changeUrgency(noteId: Long, urgencyIndex: Int) {
-//        val currentNote = noteDao.getNoteById(noteId)
-//        currentNote.urgencyLevel = urgencyIndex
-//    }
+//    override fun getNotUrgent(): LiveData<List<Note>> = noteDao.getNotUrgent()
 
     override suspend fun removeNote(note: Note) {
         noteDao.remove(note)

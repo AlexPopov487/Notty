@@ -1,6 +1,7 @@
 package com.example.notes.dao
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.example.notes.Note
 
@@ -8,6 +9,9 @@ import com.example.notes.Note
 interface NoteDao {
     @Query("SELECT * FROM Note ORDER BY id DESC")
     fun getAllNotes(): LiveData<List<Note>>
+
+    @Query("SELECT * FROM Note WHERE urgencyLevel = :urgency")
+    fun getByUrgency(urgency: Int): LiveData<List<Note>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun onSave(note: Note)
@@ -17,4 +21,7 @@ interface NoteDao {
 
     @Delete
     suspend fun remove(note: Note)
+
+    @Query("DELETE FROM Note")
+    suspend fun removeAll()
 }

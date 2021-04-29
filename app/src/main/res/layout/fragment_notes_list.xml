@@ -32,17 +32,6 @@
             android:layout_marginBottom="50dp"
             tools:listitem="@layout/note_item" />
 
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottom_app_bar"
-        style="@style/Widget.MaterialComponents.BottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@android:color/white"
-        app:fabAlignmentMode="end" />
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_empty_state"
         android:layout_width="wrap_content"
@@ -88,6 +77,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
+        style="@style/Widget.MaterialComponents.BottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@android:color/white"
+        app:fabAlignmentMode="end"
+        app:menu="@menu/app_bar_menu"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bottom_fab"

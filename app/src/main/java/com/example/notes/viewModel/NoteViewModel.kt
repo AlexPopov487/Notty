@@ -2,10 +2,7 @@ package com.example.notes.viewModel
 
 import android.app.Application
 import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.notes.Note
 import com.example.notes.R
 import com.example.notes.db.AppDb
@@ -31,6 +28,8 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
     //TODO make this a coroutine function
     val noteData = repository.getAllNotes()
 
+
+
     fun saveNote() {
         editedNote.value?.let {
             if (it.content.isBlank() && it.title.isBlank()){
@@ -40,6 +39,8 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
             saveNoteToDb(it)
         }
         _editedNote.value = Note()
+
+
     }
 
     private fun saveNoteToDb(note : Note) {
@@ -54,14 +55,17 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
              return repository.getNoteById(noteId)
     }
 
-
-
     fun removeNote(note: Note) {
         viewModelScope.launch{
             repository.removeNote(note)
         }
     }
 
+    fun removeAll(){
+        viewModelScope.launch{
+            repository.removeAll()
+        }
+    }
     fun onNoteEdit(note: Note) {
         _editedNote.value = note
     }
@@ -80,4 +84,17 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+//    fun filterByUrgency(urgency: Int) {
+//        noteData = repository.getByUrgency(urgency)
+//    }
+
+//    fun filterNotUrgent() {
+//        noteData.value?.toMutableList()?.filter { it.urgencyLevel == 1 }
+//    }
+//
+//    fun filterVeryUrgent() {
+//        noteData = repository.getNotUrgent()
+//    }
+
 }
