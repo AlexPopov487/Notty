@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -36,7 +35,7 @@ class NotesListFragment : Fragment() {
         fun onAlertDialog(view: View) {
             AlertDialog.Builder(view.context, R.style.AlertDialogCustom)
                 .setMessage(getString(R.string.delete_all_alert_dialog))
-                .setPositiveButton(getString(R.string.delete_all_alert_comfirmation)) { dialog, id ->
+                .setPositiveButton(getString(R.string.delete_all_alert_confirmation)) { dialog, id ->
                     viewModel.removeAll()
                     Snackbar.make(view, getString(R.string.all_notes_deleted_snackbar), Snackbar.LENGTH_SHORT)
                         .setAnchorView(R.id.bottom_fab)

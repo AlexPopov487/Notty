@@ -23,8 +23,9 @@
     </style>
 
 
-    <style name="AlertDialogCustom" parent="@android:style/Theme.Material.Dialog">
-        <item name="android:textColor">@color/material_on_surface_emphasis_medium</item>
-        <item name="android:textStyle">bold</item>
+    <style name="AlertDialogCustom" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">#26B8CA</item>
     </style>
+    
+
 </resources>

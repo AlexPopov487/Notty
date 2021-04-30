@@ -36,7 +36,7 @@ class CreateEditNoteFragment : Fragment() {
 
         // if note id = -1L, we are creating a new note
         if (noteIdArgs != -1L) {
-            binding.toolbar.title = getString(R.string.editNote_toolbaTitle)
+            binding.toolbar.title = getString(R.string.editNote_toolbarTitle)
             val noteToEdit = viewModel.getNoteById(noteIdArgs)
             viewModel.onNoteEdit(noteToEdit)
 

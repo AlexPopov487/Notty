@@ -10,14 +10,14 @@
     <string name="create_empty_note_error">An empty note was deleted</string>
     <string name="deleteNote_menuAction">Delete</string>
     <string name="createNote_toolbarTitle">Create note</string>
-    <string name="editNote_toolbaTitle">Edit note</string>
+    <string name="editNote_toolbarTitle">Edit note</string>
     <string name="delete_all_menu_action">Delete all</string>
     <string name="tv_empty_state_1">OOPS...</string>
     <string name="tv_empty_state_2">It seems like there\'re no notes yet!</string>
     <string name="ok_fab_description">\'OK\' button</string>
     <string name="ic_empty_state_description">Image telling there are no notes created</string>
-    <string name="delete_all_alert_dialog">Do you want to delete all notes?</string>
-    <string name="delete_all_alert_comfirmation">Delete all</string>
+    <string name="delete_all_alert_dialog">Do you really want to delete all notes?</string>
+    <string name="delete_all_alert_confirmation">Delete all</string>
     <string name="delete_all_alert_cancellation">Cancel</string>
     <string name="all_notes_deleted_snackbar">All notes were deleted</string>
 </resources>
