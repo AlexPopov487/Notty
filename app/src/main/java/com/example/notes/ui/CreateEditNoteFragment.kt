@@ -36,7 +36,7 @@ class CreateEditNoteFragment : Fragment() {
 
         // if note id = -1L, we are creating a new note
         if (noteIdArgs != -1L) {
-            binding.toolbar.title = getString(R.string.editNote_toolbarTitle)
+            binding.appBarTitleText.text = getString(R.string.editNote_toolbarTitle)
             val noteToEdit = viewModel.getNoteById(noteIdArgs)
             viewModel.onNoteEdit(noteToEdit)
 
@@ -54,7 +54,7 @@ class CreateEditNoteFragment : Fragment() {
         } else {
             // change toolbar title if we are creating a new note
             binding.toolbar.menu[0].isVisible = false
-            binding.toolbar.title = getString(R.string.createNote_toolbarTitle)
+            binding.appBarTitleText.text = getString(R.string.createNote_toolbarTitle)
         }
 
         viewModel.editedNote.observe(viewLifecycleOwner,{
