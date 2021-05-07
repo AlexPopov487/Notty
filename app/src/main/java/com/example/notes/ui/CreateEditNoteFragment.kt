@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.hellow.utils.hideKeyboard
@@ -57,13 +58,13 @@ class CreateEditNoteFragment : Fragment() {
             binding.appBarTitleText.text = getString(R.string.createNote_toolbarTitle)
         }
 
-        viewModel.editedNote.observe(viewLifecycleOwner,{
+        viewModel.editedNote.observe(viewLifecycleOwner) {
             when (it.urgencyLevel){
                 1 -> binding.toggleButton.check(R.id.notUrgent_button)
                 2 -> binding.toggleButton.check(R.id.urgent_button)
                 3 -> binding.toggleButton.check(R.id.very_Urgent_button)
             }
-        })
+        }
 
         binding.toggleButton.addOnButtonCheckedListener { group, checkedId, isChecked ->
 

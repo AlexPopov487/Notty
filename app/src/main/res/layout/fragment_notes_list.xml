@@ -13,8 +13,9 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:id="@+id/toolbar"
+            app:hideOnScroll="true"
             android:layout_height="?android:attr/actionBarSize"
-            app:layout_scrollFlags="scroll|snap|enterAlways"
+            app:layout_scrollFlags="scroll|enterAlways"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -92,7 +93,9 @@
         android:layout_gravity="bottom"
         android:backgroundTint="@android:color/white"
         app:fabAlignmentMode="end"
-        app:menu="@menu/app_bar_menu"/>
+        app:hideOnScroll="true"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:menu="@menu/app_bar_menu" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

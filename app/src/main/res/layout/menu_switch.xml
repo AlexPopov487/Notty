@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.button.MaterialButtonToggleGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toggleButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    app:singleSelection="true">
+
+    <Button
+        android:id="@+id/notUrgent_button"
+        style="@style/notUrgentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/notUrgent"
+        android:text="@string/notUrgent_toggleButton" />
+
+    <Button
+        android:id="@+id/urgent_button"
+        style="@style/urgentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/urgent"
+        android:text="@string/urgent_toggleButton" />
+
+    <Button
+        android:id="@+id/filter_very_urgent"
+        style="@style/veryUrgentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/veryUrgent"
+        android:text="@string/veryUrgent_toggleButton" />
+
+</com.google.android.material.button.MaterialButtonToggleGroup>

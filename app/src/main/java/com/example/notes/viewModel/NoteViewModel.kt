@@ -1,15 +1,11 @@
 package com.example.notes.viewModel
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.*
 import com.example.notes.Note
-import com.example.notes.R
 import com.example.notes.db.AppDb
 import com.example.notes.repository.NoteRepositoryInMemory
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
-import kotlin.coroutines.coroutineContext
 
 class NoteViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = NoteRepositoryInMemory(AppDb.getInstance(application).noteDao())
@@ -21,18 +17,33 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
     private val _isEmptyNoteAdded = MutableLiveData<Boolean>(false)
     val isEmptyNoteAdded: LiveData<Boolean>
         get() = _isEmptyNoteAdded
+
     fun resetEmptyNoteAdded() {
         _isEmptyNoteAdded.value = false
     }
 
+    private val _completeNoteList = MutableLiveData<List<Note>>()
+    val completeNoteList: LiveData<List<Note>>
+        get() = _completeNoteList
+
+
     //TODO make this a coroutine function
+    // Note: Since you’re returning a LiveData object, there’s no need to use suspend on this method.
+    //    In fact, Room won’t even allow it. The LiveData object relies on the observer pattern where
+    //    the caller can subscribe to changes on the value it contains. Whenever new data are available
+    //    from the database, this list will update and reflect that data within the UI. It won’t need
+    //    to re-query the database.
     val noteData = repository.getAllNotes()
 
+
+    fun setNoteData() {
+        _completeNoteList.value = noteData.value
+    }
 
 
     fun saveNote() {
         editedNote.value?.let {
-            if (it.content.isBlank() && it.title.isBlank()){
+            if (it.content.isBlank() && it.title.isBlank()) {
                 _isEmptyNoteAdded.value = true
                 return@let
             }
@@ -51,7 +62,6 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getNoteById(noteId: Long): Note {
-        //TODO make this a coroutine function
              return repository.getNoteById(noteId)
     }
 
@@ -85,16 +95,13 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-//    fun filterByUrgency(urgency: Int) {
-//        noteData = repository.getByUrgency(urgency)
-//    }
-
-//    fun filterNotUrgent() {
-//        noteData.value?.toMutableList()?.filter { it.urgencyLevel == 1 }
-//    }
-//
-//    fun filterVeryUrgent() {
-//        noteData = repository.getNotUrgent()
-//    }
+    fun filterByUrgency(urgency: Int, isFilterChecked: Boolean) {
+        val unfilteredList = noteData.value!!
+        if (isFilterChecked) {
+            _completeNoteList.value = noteData.value?.filter { it.urgencyLevel == urgency }
+        } else {
+            _completeNoteList.value = unfilteredList
+        }
+    }
 
 }

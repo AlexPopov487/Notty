@@ -13,7 +13,7 @@
     <string name="editNote_toolbarTitle">Edit note</string>
     <string name="delete_all_menu_action">Delete all</string>
     <string name="tv_empty_state_1">OOPS...</string>
-    <string name="tv_empty_state_2">It seems like there\'re no notes yet!</string>
+    <string name="tv_empty_state_2">Seems like there\'re no notes here yet!</string>
     <string name="ok_fab_description">\'OK\' button</string>
     <string name="ic_empty_state_description">Image telling there are no notes created</string>
     <string name="delete_all_alert_dialog">Do you really want to delete all notes?</string>

@@ -2,12 +2,16 @@ package com.example.notes.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.INFO
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +22,10 @@ import com.example.notes.adapter.NoteAdapter
 import com.example.notes.databinding.FragmentNotesListBinding
 import com.example.notes.utils.SwipeToDeleteCallback
 import com.example.notes.viewModel.NoteViewModel
+import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.menu_switch.*
+import java.util.logging.Level.INFO
 
 class NotesListFragment : Fragment() {
     private val viewModel: NoteViewModel by viewModels(
@@ -74,13 +81,17 @@ class NotesListFragment : Fragment() {
         binding.notesListRv.adapter = adapter
 
 
-        viewModel.noteData.observe(viewLifecycleOwner, Observer { notesList ->
-            binding.layoutEmptyState.visibility =
-                if (notesList.isNullOrEmpty()) View.VISIBLE else View.GONE
-            adapter.submitList(notesList)
+        viewModel.noteData.observe(viewLifecycleOwner, Observer {
+            viewModel.setNoteData()
         })
 
-        viewModel.isEmptyNoteAdded.observe(viewLifecycleOwner, {
+        viewModel.completeNoteList.observe(viewLifecycleOwner) { listToShow ->
+            binding.layoutEmptyState.visibility =
+                if (listToShow.isNullOrEmpty()) View.VISIBLE else View.GONE
+            adapter.submitList(listToShow)
+        }
+
+        viewModel.isEmptyNoteAdded.observe(viewLifecycleOwner) {
             if (it) {
                 Snackbar.make(
                     binding.notesListRv,
@@ -90,31 +101,63 @@ class NotesListFragment : Fragment() {
 
                 viewModel.resetEmptyNoteAdded()
             }
-        })
+        }
 
         binding.bottomFab.setOnClickListener {
             findNavController().navigate(R.id.action_notesListFragment_to_createEditNoteFragment)
         }
 
 
+        binding.bottomAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_choose_not_urgent -> {
+                    menuItem.isChecked = !menuItem.isChecked
 
-//        binding.bottomAppBar.setOnMenuItemClickListener { menuItem ->
-//            when (menuItem.itemId) {
-//                R.id.action_choose_not_urgent -> {
-//                    viewModel.filterByUrgency(1)
-//                    true
-//                }
-//                R.id.action_choose_urgent -> {
-//                    viewModel.filterByUrgency(2)
-//                    true
-//                }
-//                R.id.action_choose_very_urgent -> {
-//                    viewModel.filterByUrgency(3)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
+                    if (menuItem.isChecked) {
+                        Log.i("NotesListFragment", "DEBUG: green checked")
+                        menuItem.setIcon(R.drawable.ic_note_chooser_not_urgent_checked)
+                    }  else {
+                        Log.i("NotesListFragment", "DEBUG: green unchecked")
+                        menuItem.setIcon(R.drawable.ic_note_chooser_not_urgent)
+                    }
+
+                    viewModel.filterByUrgency(1, menuItem.isChecked)
+                    true
+                }
+                R.id.action_choose_urgent -> {
+                    menuItem.isChecked = !menuItem.isChecked
+
+
+                    if (menuItem.isChecked) {
+                        Log.i("NotesListFragment", "DEBUG: yellow checked")
+                        menuItem.setIcon(R.drawable.ic_note_chooser_urgent_checked)
+                    }
+                    else{
+                        Log.i("NotesListFragment", "DEBUG: yellow unchecked")
+                        menuItem.setIcon(R.drawable.ic_note_chooser_urgent)
+                    }
+                    viewModel.filterByUrgency(2, menuItem.isChecked)
+                    true
+                }
+
+                R.id.action_choose_very_urgent -> {
+                    menuItem.isChecked = !menuItem.isChecked
+
+
+                    if (menuItem.isChecked) {
+                        Log.i("NotesListFragment", "DEBUG: red checked")
+                        menuItem.setIcon(R.drawable.ic_note_chooser_very_urgent_checked)
+                    }
+                    else{
+                        Log.i("NotesListFragment", "DEBUG: red unchecked")
+                        menuItem.setIcon(R.drawable.ic_note_chooser_very_urgent)
+                    }
+                    viewModel.filterByUrgency(3, menuItem.isChecked)
+                    true
+                }
+                else -> false
+            }
+        }
 
         val swipeToDeleteCallback = object : SwipeToDeleteCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

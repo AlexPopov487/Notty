@@ -68,6 +68,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,9 +80,9 @@
 
         <Button
             android:id="@+id/notUrgent_button"
+            style="@style/notUrgentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/notUrgentButton"
             android:backgroundTint="@color/notUrgent"
             android:text="@string/notUrgent_toggleButton" />
 
