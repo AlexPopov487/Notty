@@ -1,4 +1,4 @@
-# notesKotlin
+# Notty
 ![Icon](https://raw.github.com/AlexPopov487/notesKotlin/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)
 
 
