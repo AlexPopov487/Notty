@@ -8,24 +8,24 @@
     </style>
 
     <style name="notUrgentButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="android:textColor">@color/not_urgent_bt_text_color</item>
-        <item name="strokeColor">@color/not_urgent_bt_stroke_color</item>
+        <item name="android:textColor">@color/not_urgent_toggle_bt_text_color</item>
+        <item name="strokeColor">@color/not_urgent_toggle_bt_stroke_color</item>
     </style>
 
     <style name="urgentButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="android:textColor">@color/urgent_bt_text_color</item>
-        <item name="strokeColor">@color/urgent_bt_stroke_color</item>
+        <item name="android:textColor">@color/urgent_toggle_bt_text_color</item>
+        <item name="strokeColor">@color/urgent_toggle_bt_stroke_color</item>
     </style>
 
     <style name="veryUrgentButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="android:textColor">@color/very_urgent_bt_text_color</item>
-        <item name="strokeColor">@color/very_urgent_bt_stroke_color</item>
+        <item name="android:textColor">@color/very_urgent_toggle_bt_text_color</item>
+        <item name="strokeColor">@color/very_urgent_toggle_bt_stroke_color</item>
     </style>
 
 
     <style name="AlertDialogCustom" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="colorPrimary">#26B8CA</item>
     </style>
-    
+
 
 </resources>
